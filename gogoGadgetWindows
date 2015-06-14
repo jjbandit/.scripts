@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Alias for starting windows VM
+vboxmanage startvm Windows7-64bit
+

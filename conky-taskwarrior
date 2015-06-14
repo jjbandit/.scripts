@@ -1,0 +1,38 @@
+gap_x 780px
+alignment top_right
+
+minimum_size 600x10
+max_text_width 0
+
+
+default_color white
+default_shade_color black
+
+draw_shades yes
+
+use_xft yes 
+Xftfont DejaVu Sans Mono:size=11
+
+net_avg_samples 2
+out_to_console no 
+out_to_stderr no
+extra_newline no
+
+own_window yes 
+own_window_class ConkyTasks
+own_window_type override 
+own_window_transparent yes
+
+update_interval 1.0 
+
+double_buffer yes
+
+TEXT
+School
+${exec task project:School}
+
+Work 
+${exec task project:Work}
+
+System 
+${exec task project:System}

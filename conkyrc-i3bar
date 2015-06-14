@@ -1,0 +1,84 @@
+out_to_x no
+own_window no
+out_to_console yes
+background no
+max_text_width 0
+
+# Update interval in seconds
+update_interval 0.5
+
+# This is the number of times Conky will update before quitting.
+# Set to zero to run forever.
+total_run_times 0
+
+# Shortens units to a single character (kiB->k, GiB->G, etc.). Default is off.
+short_units yes
+
+# How strict should if_up be when testing an interface for being up?
+# The value is one of up, link or address, to check for the interface
+# being solely up, being up and having link or being up, having link
+# and an assigned IP address. 
+if_up_strictness address
+
+# Add spaces to keep things from moving about?  This only affects certain objects.
+# use_spacer should have an argument of left, right, or none
+use_spacer left
+
+# Force UTF8? note that UTF8 support required XFT
+override_utf8_locale no
+
+# number of cpu samples to average
+# set to 1 to disable averaging
+cpu_avg_samples 2
+
+# Stuff after 'TEXT' will be formatted on screen
+
+TEXT
+
+[
+	{
+		"full_text" : "${if_up wlp2s0} ${addr wlp2s0}   ${else} No IP  ${endif}",
+		"color" : ${if_up wlp2s0} "\#90EE90" ${else} "\#b22222" ${endif},
+		"align" : "left"
+	},
+	{
+		"full_text" : "  ${execi 5 checkupdates | wc -l} Updates  ",
+		"color" : ${if_match "${execi 5 checkupdates}" > "0" } "\#ffa500" ${else} "\#aaaaaa" ${endif},
+		"separator" : false
+	},
+	{
+		"full_text" : " ",
+		"min_width" : 80,
+		"separator" : false
+	},
+	{
+		"full_text" : "♫",
+		"color" : ${if_running mpd} \
+			${if_match "${mpd_status}"=="Playing"} "\#90ee90" ${endif} \
+			${if_match "${mpd_status}"=="Paused"} "\#aaaaaa" ${endif} \
+			${if_match "${mpd_status}"=="Stopped"} "\#b22222" ${endif} \
+			${else} \
+			"\#b22222" \
+			${endif},
+		"separator" : false
+	},
+	{
+		"full_text" : "${if_running mpd}${if_mpd_playing}${mpd_artist} -- ${mpd_title} ${else} Stopped ${endif} ${else} MPD DEAD ${endif}",
+		"color" : ${if_running mpd}${if_mpd_playing} "\#ffffff" ${else} "\#aaaaaa" ${endif} ${else} "\#b22222" ${endif},
+		"separator" : false
+	},
+	{
+		"full_text" : "${if_running mpd}${if_mpd_playing}${mpd_vol}%${endif}${endif}",
+		"color" : ${if_running mpd}${if_mpd_playing} "\#aaaaaa" ${else} "\#b22222" ${endif} ${else} "\#b22222" ${endif},
+		"separator" : false
+	},
+	{
+		"full_text" : " ",
+		"min_width" : 80 ,
+		"separator" : false
+	},
+	{
+		"full_text" : "  ${time %a %b %d}  ${time %H:%M}    ",
+		"color" : "\#aaaaaa"
+	}
+],

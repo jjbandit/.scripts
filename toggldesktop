@@ -1,0 +1,4 @@
+#! /bin/zsh
+
+cd /home/scallywag/toggldesktop
+make run

@@ -1,0 +1,3 @@
+#! /bin/sh
+
+ack -g . | xargs cat | wc -l
