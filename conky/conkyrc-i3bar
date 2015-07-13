@@ -37,8 +37,13 @@ TEXT
 
 [
 	{
-		"full_text" : "${if_up wlp2s0} ${addr wlp2s0}   ${else} No IP  ${endif}",
+		"full_text" : "${if_up wlp2s0} ${addr wlp2s0} ${else}${endif}",
 		"color" : ${if_up wlp2s0} "\#90EE90" ${else} "\#b22222" ${endif},
+		"align" : "left"
+	},
+	{
+		"full_text" : "${if_up wlp8s0} ${addr wlp8s0} ${else}${endif}",
+		"color" : ${if_up wlp8s0} "\#90EE90" ${else} "\#b22222" ${endif},
 		"align" : "left"
 	},
 	{
